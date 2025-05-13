@@ -133,7 +133,7 @@ export default function MainHeader() {
             {/* Log in - Always visible */}
             <Button
               variant="outline"
-              className="border-2 border-[#00205B] text-[#00205B] hover:bg-[#00205B]/10 hover:cursor-pointer hover:text-[#00205B] rounded-lg font-medium px-4 py-1.5 text-sm transition-colors"
+              className="border-2 border-[#00205B] text-[#00205B] bg-transparent hover:bg-[#00205B]/10 hover:cursor-pointer hover:text-[#00205B] rounded-lg font-medium px-4 py-1.5 text-sm transition-colors"
             >
               Log in
             </Button>

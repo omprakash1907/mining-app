@@ -10,6 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import heroimage from "@/assets/image/bg-vector.png";
+import herobg1 from "@/assets/image/hero-bg-1.png";
+import herobg2 from "@/assets/image/hero-bg-2.png";
 
 export default function HeroSection() {
   const container = {
@@ -40,7 +42,7 @@ export default function HeroSection() {
           <div className="relative  w-[150px] h-[150px] md:w-[400px] md:h-[400px]">
             <img
               src={heroimage}
-              alt="Blue butterfly"
+              alt="Blue xehagon"
               width={400}
               height={400}
               className="object-contain"
@@ -56,18 +58,23 @@ export default function HeroSection() {
               transition={{ duration: 0.5 }}
               className="w-full md:w-1/2 "
             >
-              <h1 className="text-5xl md:text-7xl font-bold primary-font ">
-                <span className="bg-gradient-to-r from-[#9169CA] to-[#667EAE] bg-clip-text text-transparent">Bitcoin mining as a</span> service for everyone.
+              <h1 className="text-5xl md:text-7xl font-bold primary-font">
+                <span className="bg-gradient-to-r from-[#00205B] via-[#753BBD] to-[#00A9CE] bg-clip-text text-transparent">
+                  Bitcoin mining as a
+                </span>{' '}
+                <span className="bg-gradient-to-tr from-[#00205B] to-[#753BBD] bg-clip-text text-transparent">service</span>
+                <span className="bg-gradient-to-r from-[#000000] via-[#1A1A1A] to-[#333333] bg-clip-text text-transparent"> for everyone.</span>
               </h1>
 
+
               <div className="flex gap-4 items-center justify-end mt-12 md:w-2/3 ">
-                <Button className="primary-bg text-white px-10 py-6 font-medium hover:cursor-pointer flex grow">
+                <Button className="primary-bg text-white px-10 py-6 font-medium text-lg hover:cursor-pointer flex grow">
                   Start mining Bitcoin now
                 </Button>
                 <div className="ml-4">
                   <a
                     href="#"
-                    className="flex items-center text-[#333333] hover:text-gray-600 transition-colors "
+                    className="flex items-center text-[#333333] text-lg hover:text-gray-600 transition-colors "
                   >
                     <span className="mr-2">Explore all plans</span>
                     <svg
@@ -102,20 +109,29 @@ export default function HeroSection() {
           >
             {/* Buy Subscriptions Card */}
             <motion.div variants={item}>
-              <Card className="h-full bg-[#424242] text-white border-none shadow-lg rounded-xl overflow-hidden hover:transform hover:scale-[1.01] transition-all cursor-pointer">
+              <Card
+                className="h-full text-white border-none shadow-lg rounded-xl overflow-hidden hover:transform hover:scale-[1.01] transition-all cursor-pointer"
+                style={{
+                  backgroundImage: `url(${herobg1})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              >
                 <CardHeader>
                   <CardTitle className="text-3xl font-medium primary-font">
-                    Buy Subscriptions
+                    Buy Mining Plans
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-md text-gray-200">Lorem ipsum</p>
+                  <p className="text-md text-gray-200 text-base w-1/2">
+                    Extensive options for data and minutes with fixed monthly payments.
+                  </p>
                 </CardContent>
                 <CardFooter>
                   <div className="flex justify-between items-center w-full">
                     <a
                       href="#"
-                      className="text-lg flex items-center gap-1 text-gray-200 hover:text-white transition-colors"
+                      className="text-lg flex items-center gap-1 text-[#FFFFFF] hover:text-white transition-colors"
                     >
                       Explore all
                       <svg
@@ -134,22 +150,23 @@ export default function HeroSection() {
                   </div>
                 </CardFooter>
               </Card>
+
             </motion.div>
 
             {/* Why Us? Card */}
             <motion.div variants={item}>
-              <Card className="h-full bg-white border-none shadow-lg rounded-xl overflow-hidden hover:transform hover:scale-[1.01] transition-all cursor-pointer">
+              <Card className="h-full pb-0 bg-white border-none shadow-lg rounded-xl overflow-hidden hover:transform hover:scale-[1.01] transition-all cursor-pointer">
                 <CardHeader>
-                  <CardTitle className="text-xl font-medium text-[#333333]">
-                    Why Us?
+                  <CardTitle className="text-3xl font-medium primary-font text-[#333333]">
+                    Key Benefits
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex justify-start items-center">
-                  <div className="relative">
+                <CardContent className="relative h-[214px] md:h-[300px]">
+                  <div className="absolute right-0 bottom-0">
                     <img
-                      src={heroimage}
+                      src={herobg2}
                       alt="Blue butterfly"
-                      className="object-contain w-48 h-48"
+                      className="object-cover w-full h-full"
                     />
                   </div>
                 </CardContent>
@@ -158,12 +175,43 @@ export default function HeroSection() {
 
             {/* Empty Card (for layout balance) */}
             <motion.div variants={item}>
-              <Card className="h-full bg-[#424242] text-white border-none shadow-lg rounded-xl overflow-hidden hover:transform hover:scale-[1.01] transition-all cursor-pointer">
-                <CardHeader>
-                  <CardTitle className="text-xl font-medium">Feature</CardTitle>
-                </CardHeader>
-                <CardContent>{/* Placeholder for content */}</CardContent>
+              <Card
+                className="h-full text-white border-none shadow-lg rounded-xl overflow-hidden hover:transform hover:scale-[1.01] transition-all cursor-pointer p-6 flex flex-col justify-between"
+                style={{
+                  backgroundImage: `url(${herobg1})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              >
+                <div>
+                  <CardHeader className="p-0">
+                    <CardTitle className="text-2xl  md:text-3xl font-medium primary-font">
+                      Learn more about Bitcoin <br /> Mining and virtual assets
+                    </CardTitle>
+                  </CardHeader>
+                </div>
+
+                <CardFooter className="flex justify-between items-end p-0">
+                  <p className="text-base md:text-lg">Our knowledge library</p>
+                  <button className="bg-white text-black rounded-md p-2 hover:scale-105 transition-all">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="black"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                  </button>
+                </CardFooter>
               </Card>
+
             </motion.div>
           </motion.div>
         </div>
