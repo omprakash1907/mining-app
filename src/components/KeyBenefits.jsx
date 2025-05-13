@@ -33,7 +33,7 @@ export default function KeyBenefits() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl font-nomral mb-3 text-[#333333] actor-font">Key Benefits</h2>
+          <h2 className="text-5xl font-nomral mb-3 text-[#333333] primary-font pb-3">Key Benefits</h2>
           <p className="text-gray-600 mb-10 max-w-xl">
             Lorem ipsum dolor sit amet consectetur. Duis tempus dolor vitae consectetur. Duis mattis est amet elit quis.
           </p>

@@ -12,6 +12,7 @@ import {
 import heroimage from "@/assets/image/bg-vector.png";
 import herobg1 from "@/assets/image/hero-bg-1.png";
 import herobg2 from "@/assets/image/hero-bg-2.png";
+import herobg3 from "@/assets/image/hero-bg-3.png";
 
 export default function HeroSection() {
   const container = {
@@ -178,7 +179,7 @@ export default function HeroSection() {
               <Card
                 className="h-full text-white border-none shadow-lg rounded-xl overflow-hidden hover:transform hover:scale-[1.01] transition-all cursor-pointer p-6 flex flex-col justify-between"
                 style={{
-                  backgroundImage: `url(${herobg1})`,
+                  backgroundImage: `url(${herobg3})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}
