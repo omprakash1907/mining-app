@@ -113,7 +113,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-2 xs:col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-1 mt-4 sm:mt-0 flex justify-center lg:justify-center">
+          <div className="col-span-2 xs:col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-1 mt-4 sm:mt-0 flex justify-center lg:justify-end">
             <img src={assistant} alt="assistant" className="h-fit w-fit" />
           </div>
         </div>
@@ -188,7 +188,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="col-span-2 sm:col-span-3 md:col-span-2 lg:col-span-1 mt-4 sm:mt-0">
+          <div className="col-span-2 sm:col-span-3 md:col-span-2 lg:col-span-1 mt-4 sm:mt-0 flex flex-col items-end">
             <h3 className="font-bold text-sm sm:text-base mb-2 sm:mb-4">
               Follow us on social media
             </h3>
