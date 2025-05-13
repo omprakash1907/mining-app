@@ -7,7 +7,7 @@ export default function BitcoinMiningContract() {
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="container mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Hello Sergio,</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2 primary-font">Hello Sergio,</h1>
           <p className="text-gray-600 max-w-xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam.
@@ -17,7 +17,7 @@ export default function BitcoinMiningContract() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
             <div>
-              <h2 className="text-lg font-semibold text-gray-800 mb-1">Select your Bitcoin mining contract</h2>
+              <h2 className="text-lg font-semibold text-gray-800 mb-1 primary-font">Select your Bitcoin mining contract</h2>
               <p className="text-sm text-gray-600 mb-4">One line description explaining bundle plans</p>
 
               <div className="grid grid-cols-3 gap-4">
@@ -52,7 +52,7 @@ export default function BitcoinMiningContract() {
             </div>
 
             <div>
-              <h2 className="text-lg font-semibold text-gray-800 mb-1">Select your contract duration</h2>
+              <h2 className="text-lg font-semibold text-gray-800 mb-1 primary-font">Select your contract duration</h2>
               <p className="text-sm text-gray-600 mb-4">One line description here</p>
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -60,7 +60,7 @@ export default function BitcoinMiningContract() {
                   <input type="radio" id="6months" name="duration" className="peer sr-only" />
                   <label
                     htmlFor="6months"
-                    className="flex justify-center items-center h-12 border border-gray-300 rounded-md peer-checked:border-blue-800 peer-checked:border-2 cursor-pointer"
+                    className="flex justify-center primary-font items-center h-12 border border-gray-300 rounded-md peer-checked:border-blue-800 peer-checked:border-2 cursor-pointer"
                   >
                     6 Months
                   </label>
@@ -69,7 +69,7 @@ export default function BitcoinMiningContract() {
                   <input type="radio" id="1year" name="duration" className="peer sr-only" defaultChecked />
                   <label
                     htmlFor="1year"
-                    className="flex flex-col justify-center items-center h-12 border border-gray-300 rounded-md peer-checked:border-blue-800 peer-checked:border-2 cursor-pointer relative"
+                    className="flex flex-col primary-font justify-center items-center h-12 border border-gray-300 rounded-md peer-checked:border-blue-800 peer-checked:border-2 cursor-pointer relative"
                   >
                     <div className="absolute -top-2.5 left-1/2 transform -translate-x-1/2 bg-blue-800 text-white text-xs px-2 py-0.5 rounded-sm whitespace-nowrap">
                       Most popular
@@ -81,7 +81,7 @@ export default function BitcoinMiningContract() {
                   <input type="radio" id="2years" name="duration" className="peer sr-only" />
                   <label
                     htmlFor="2years"
-                    className="flex justify-center items-center h-12 border border-gray-300 rounded-md peer-checked:border-blue-800 peer-checked:border-2 cursor-pointer"
+                    className="flex justify-center primary-font items-center h-12 border border-gray-300 rounded-md peer-checked:border-blue-800 peer-checked:border-2 cursor-pointer"
                   >
                     2 Years
                   </label>
@@ -90,16 +90,16 @@ export default function BitcoinMiningContract() {
                   <input type="radio" id="3years" name="duration" className="peer sr-only" />
                   <label
                     htmlFor="3years"
-                    className="flex justify-center items-center h-12 border border-gray-300 rounded-md peer-checked:border-blue-800 peer-checked:border-2 cursor-pointer"
+                    className="flex justify-center primary-font items-center h-12 border border-gray-300 rounded-md peer-checked:border-blue-800 peer-checked:border-2 cursor-pointer"
                   >
                     3 Years
                   </label>
                 </div>
                 <div className="relative">
-                  <input type="radio" id="5years" name="duration" className="peer sr-only" />
+                  <input type="radio" id="5years" t name="duration" className="peer sr-only" />
                   <label
                     htmlFor="5years"
-                    className="flex justify-center items-center h-12 border border-gray-300 rounded-md peer-checked:border-blue-800 peer-checked:border-2 cursor-pointer"
+                    className="flex justify-center primary-font items-center h-12 border border-gray-300 rounded-md peer-checked:border-blue-800 peer-checked:border-2 cursor-pointer"
                   >
                     5 Years
                   </label>
