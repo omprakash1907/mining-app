@@ -8,7 +8,7 @@ import logo from '@/assets/image/logo.png'
 
 export default function Footer() {
   const footerLinks = {
-    products: ["Product 1", "Product 2", "Product 3", "Offers"],
+    products: ["Devices", "Mobile Plans", "Fixed services", "Offers"],
     solutionsByIndustry: [
       "Retail",
       "Healthcare",
@@ -33,12 +33,12 @@ export default function Footer() {
       "Support plans",
       "Fixed services",
     ],
-    aboutUs: ["Who we are", "News", "Media", "Affiliates"],
+    aboutUs: ["Who we are", "News", "Fibre network", "%G for business"],
   };
 
   return (
     <footer className="bg-[#EEEEEE] pt-8 sm:pt-10 md:pt-12 pb-4 text-[#333333]">
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="container mx-auto px-4 sm:px-4">
         {/* First row of columns */}
         <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 mb-8 md:mb-12">
           <div className="col-span-1">
@@ -305,7 +305,7 @@ export default function Footer() {
             </div>
 
             <div className="text-center text-[10px] sm:text-xs">
-              © Copyright 2024 LOREM. All rights reserved.
+              © Copyright 2024 EITC. All rights reserved.
             </div>
           </div>
         </div>

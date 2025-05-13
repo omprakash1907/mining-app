@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import logo from '@/assets/image/logo.png'
 import { X, Menu, Search } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function MainHeader() {
   const [showSearch, setShowSearch] = useState(false);
@@ -23,7 +24,7 @@ export default function MainHeader() {
       {/* Mobile Sidebar */}
       <div className={`fixed top-0 left-0 h-full w-64 bg-white z-50 shadow-xl transform transition-transform duration-300 ease-in-out lg:hidden ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-          <img src={logo} alt="logo" className="h-8" />
+          <img src={logo} alt="logo" className="h-8 cursor-pointer" />
           <button
             onClick={() => setMobileMenuOpen(false)}
             className="p-1 rounded-md hover:bg-gray-100"
@@ -61,9 +62,9 @@ export default function MainHeader() {
           {/* Left Section - Logo and Navigation */}
           <div className="flex items-center space-x-4 lg:space-x-8">
             {/* Logo */}
-            <div className="flex items-center justify-center">
+            <Link to={'/'} className="flex items-center justify-center cursor-pointer">
               <img src={logo} alt="logo" className="h-8" />
-            </div>
+            </Link>
 
             {/* Navigation Buttons - Desktop */}
             <div className="hidden lg:flex items-center space-x-1">

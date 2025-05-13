@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,10 +21,29 @@ export default function OutputValues() {
   const [estimatedIncome, setEstimatedIncome] = useState(21102.11);
   const [roi, setRoi] = useState(104.51);
 
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
+  const cardItem = {
+    hidden: { opacity: 0, scale: 0.8 },
+    show: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  };
+
   // Calculate values when inputs change
   useEffect(() => {
-    // This would normally calculate based on actual formulas
-    // For demo purposes, we're using static values from the image
     setInvestment(20019.87);
     setEstimatedIncome(21102.11);
     setRoi(104.51);
@@ -32,17 +52,23 @@ export default function OutputValues() {
   const returnValue = 104.51;
 
   return (
-    <div className="w-full container mx-auto px-4 py-16">
-      <div className="bg-gray-50 py-4 px-2 ">
+    <motion.div 
+      initial="hidden"
+      animate="show"
+      variants={container}
+      className="w-full container mx-auto px-4 py-16"
+    >
+      <motion.div variants={item} className="bg-gray-50 py-4 px-2">
         <div className="text-gray-500 primary-font">ROI CALCULATOR</div>
         <h1 className="text-3xl font-bold text-slate-800 mb-4 primary-font">
           See your potential.
         </h1>
-      </div>
+      </motion.div>
+      
       <div className="bg-white">
         <div className="grid md:grid-cols-2 items-center gap-8 py-4">
-          <div className="space-y-6 p-8">
-            <div className="space-y-2">
+          <motion.div variants={item} className="space-y-6 p-8">
+            <motion.div variants={item} className="space-y-2">
               <label className="text-sm font-medium">Select a plan</label>
               <Select
                 value={selectedPlan}
@@ -76,9 +102,9 @@ export default function OutputValues() {
                   </SelectItem>
                 </SelectContent>
               </Select>
-            </div>
+            </motion.div>
 
-            <div className="space-y-2">
+            <motion.div variants={item} className="space-y-2">
               <div className="flex justify-between">
                 <label className="text-sm font-medium">How many plans?</label>
                 <span className="text-sm text-gray-500">Maximum: 20</span>
@@ -91,12 +117,15 @@ export default function OutputValues() {
                 onValueChange={(value) => setPlanCount(value[0])}
                 className="py-4"
               />
-              <div className="inline-block bg-slate-800 text-white text-xs font-medium px-3 py-1">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="inline-block bg-slate-800 text-white text-xs font-medium px-3 py-1"
+              >
                 {planCount} PLANS
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div className="space-y-2">
+            <motion.div variants={item} className="space-y-2">
               <div className="flex justify-between">
                 <label className="text-sm font-medium">How many months?</label>
                 <span className="text-sm text-gray-500">Maximum: 12</span>
@@ -109,12 +138,15 @@ export default function OutputValues() {
                 onValueChange={(value) => setMonths(value[0])}
                 className="py-4"
               />
-              <div className="inline-block bg-slate-800 text-white text-xs font-medium px-3 py-1">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="inline-block bg-slate-800 text-white text-xs font-medium px-3 py-1"
+              >
                 {months} MONTHS
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div className="space-y-2">
+            <motion.div variants={item} className="space-y-2">
               <div className="flex justify-between">
                 <label className="text-sm font-medium">
                   BTC Price Forecast
@@ -128,33 +160,50 @@ export default function OutputValues() {
                 className="w-full"
                 prefix="$"
               />
-            </div>
+            </motion.div>
 
-            <div className="bg-gray-100 p-3 rounded">
+            <motion.div 
+              variants={item}
+              whileHover={{ scale: 1.02 }}
+              className="bg-gray-100 p-3 rounded"
+            >
               <div className="text-xs text-gray-500">PRICE OF HASHRATE</div>
               <div className="text-sm font-medium">0.049,683 USD/TH/Day</div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="flex flex-col justify-between">
-            <Card className="p-6 border rounded-md flex flex-col ">
+          <motion.div variants={cardItem} className="flex flex-col justify-between">
+            <Card className="p-6 border rounded-md flex flex-col">
               <div>
                 <div className="text-sm font-bold text-gray-500">
                   HASHRATE FEE
                 </div>
-                <div className="text-3xl font-bold">
+                <motion.div 
+                  key={investment}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-3xl font-bold"
+                >
                   $
                   {investment.toLocaleString("en-US", {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
-                </div>
+                </motion.div>
               </div>
               <div className="flex justify-center items-center w-full">
-                <div className="relative w-64 h-64">
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ 
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="relative w-64 h-64"
+                >
                   {/* Outermost ring - light blue (10px) */}
                   <div className="absolute inset-0 rounded-full border-[15px] border-[#58caef]"></div>
-                  {/* <div className="absolute inset-0 rounded-full border-[20px] border-[#FFFFFF]"></div> */}
 
                   {/* Middle ring - white (20px) - offset by 10px to show light blue outer */}
                   <div
@@ -180,49 +229,73 @@ export default function OutputValues() {
 
                   {/* Text display */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <div
-                      className="text-xs text-gray-600 font-semibold"
-                      style={{ fontFamily: "Open Sans, sans-serif" }}
-                    >
+                    <div className="text-xs text-gray-600 font-semibold">
                       MINING RETURN
                     </div>
-                    <div
+                    <motion.div 
+                      key={returnValue}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3 }}
                       className="text-2xl font-bold text-[#333333] primary-font"
                     >
                       {returnValue.toFixed(2)}%
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
               </div>
               <div className="grid grid-cols-2 w-full gap-4">
-                <div className="text-center">
+                <motion.div 
+                  whileHover={{ scale: 1.03 }}
+                  className="text-center"
+                >
                   <div className="text-base text-[#00205B] primary-font font-semibold">Investments</div>
-                  <div className="font-bold primary-font text-2xl">
+                  <motion.div 
+                    key={investment}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="font-bold primary-font text-2xl"
+                  >
                     $
                     {investment.toLocaleString("en-US", {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     })}
-                  </div>
-                </div>
-                <div className="text-center">
+                  </motion.div>
+                </motion.div>
+                <motion.div 
+                  whileHover={{ scale: 1.03 }}
+                  className="text-center"
+                >
                   <div className="text-base  text-[#58caef] primary-font font-semibold">Estimated Income</div>
-                  <div className="font-bold primary-font text-2xl">
+                  <motion.div 
+                    key={estimatedIncome}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="font-bold primary-font text-2xl"
+                  >
                     $
                     {estimatedIncome.toLocaleString("en-US", {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     })}
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </div>
-              <Button className="w-full text-base bg-gradient-to-r from-[#663AB6] to-[#BB3AB1] text-white py-6 mt-2 hover:cursor-pointer rounded-md">
-                View our Plans
-              </Button>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button className="w-full text-base bg-gradient-to-r from-[#663AB6] to-[#BB3AB1] text-white py-6 mt-2 hover:cursor-pointer rounded-md">
+                  View our Plans
+                </Button>
+              </motion.div>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -67,8 +67,8 @@ export default function FAQ() {
   ]
 
   return (
-    <div className="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto">
+    <div className="bg-gray-50 py-12 ">
+      <div className="container mx-auto px-4 sm:px-4 lg:px-4">
         {/* Stack cards vertically on mobile, side by side on larger screens */}
         <div className="flex flex-col lg:flex-row gap-6">
           {/* FAQ Card */}
@@ -171,10 +171,6 @@ export default function FAQ() {
               </Accordion>
             </CardContent>
           </Card>
-        </div>
-
-        <div className="mt-8 text-center text-sm text-muted-foreground">
-          <p>Still have questions? Contact our support team at support@example.com</p>
         </div>
       </div>
     </div>

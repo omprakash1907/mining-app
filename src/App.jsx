@@ -1,30 +1,19 @@
-import "./App.css";
-import FAQ from "./components/FAQ";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
-import KeyBenefits from "./components/KeyBenefits";
-import LearnMore from "./components/LearnMore";
-import OutputValues from "./components/OutputValues";
-import PricingSection from "./components/PricingSection";
-
+import { Routes, Route } from "react-router-dom";
+import Layout from "./rootlayout/Layout";
+import StartMining from "./pages/StartMining";
+import HomePage from "./pages/HomePage";
+import './App.css'
+import BitcoinMiningContract from "./pages/BitcoinMiningContract";
 
 function App() {
   return (
-    <>
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">
-          <HeroSection />
-          <KeyBenefits />
-          <PricingSection />
-          <OutputValues />
-          <LearnMore />
-          <FAQ />
-        </main>
-        <Footer />
-      </div>
-    </>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/start-mining" element={<StartMining />} />
+        <Route path="/mining-contract" element={<BitcoinMiningContract />} />
+      </Route>
+    </Routes>
   );
 }
 
