@@ -11,33 +11,33 @@ import {
 export default function PricingSection() {
   const packages = [
     {
-      name: "Plan 1",
-      type: "Small",
-      hours: "1 Hr",
-      price: "0.02",
+      name: "Plan 250",
+      type: "Mining Small",
+      hours: "250 TH/S",
+      price: "1550",
     },
     {
-      name: "Plan 2",
-      type: "Medium",
-      hours: "5 Hr",
-      price: "0.02",
+      name: "Plan 500",
+      type: "Mining Medium",
+      hours: "500 TH/S",
+      price: "2500",
     },
     {
-      name: "Plan 3",
-      type: "Large",
-      hours: "24 Hr",
-      price: "0.0175",
+      name: "Plan 750",
+      type: "Mining Large",
+      hours: "750 TH/S",
+      price: "3299",
     },
     {
-      name: "Plan 4",
-      type: "Very Large",
-      hours: "240 Hr",
-      price: "0.15",
+      name: "Plan 1,000",
+      type: "Mining Mega",
+      hours: "1000 TH/S",
+      price: "4100",
     },
   ];
 
   return (
-    <section className="py-16 px-4">
+    <section className="py-16 px-4 bg-gray-50">
       <div className="container mx-auto md:px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -72,7 +72,7 @@ export default function PricingSection() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {packages.map((pkg, index) => (
             <motion.div
               key={index}
@@ -81,7 +81,7 @@ export default function PricingSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full rounded-xl overflow-hidden relative cursor-pointer">
+              <Card className="h-full rounded-xl overflow-hidden relative cursor-pointer border-0 shadow-none">
                 <div className="absolute bottom-0 left-0 w-full h-3 bg-gradient-to-r from-[#9169CA] to-[#667EAE] z-0" />
                 <CardHeader className="pb-2">
                   <div className="flex items-center">
@@ -106,7 +106,7 @@ export default function PricingSection() {
                   <h3 className="font-bold text-lg mt-2">{pkg.name}</h3>
                 </CardHeader>
                 <CardContent className="pb-2">
-                  <p className="text-gray-400 text-sm mb-2">Spec</p>
+                  <p className="text-gray-400 text-sm mb-2 actor-intern">Hashrate</p>
                   <div className="flex items-center gap-2 mb-4">
                     <svg
                       width="18"
@@ -120,16 +120,16 @@ export default function PricingSection() {
                         fill="#00205B"
                       />
                     </svg>
-                    <span className="text-sm font-semibold">{pkg.hours}</span>
+                    <span className="text-md font-semibold">{pkg.hours}</span>
                   </div>
                 </CardContent>
                 <CardFooter className="flex flex-col items-start pt-4">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-gray-400 text-3xl font-bold">
-                      USD
+                    <span className="text-gray-400 text-4xl font-bold">
+                      AED
                     </span>
-                    <span className="text-3xl font-bold">{pkg.price}</span>
-                    <span className="text-sm text-gray-400">/ Hr + VAT</span>
+                    <span className="text-4xl font-bold text-[#333333]">{pkg.price}</span>
+                    <span className="text-sm text-gray-400">/ month + VAT</span>
                   </div>
                 </CardFooter>
               </Card>
