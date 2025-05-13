@@ -6,9 +6,16 @@ body {
   font-family: 'Duco Headline 16';
   src: url('@/assets/fonts/duco-headline/Co Headline Bold.woff') format('woff');
 }
+@font-face {
+  font-family: 'Duco Headline 16 light';
+  src: url('@/assets/fonts/duco-headline/Co Headline Bold.woff') format('woff');
+}
 
 .primary-font {
   font-family: 'Duco Headline 16', sans-serif;
+}
+.primary-font-light {
+  font-family: 'Duco Headline 1 light', sans-serif;
 }
 
 .primary-bg{
