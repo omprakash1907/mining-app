@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 export default function BitcoinWallet() {
   return (
-    <div className=" bg-gray-50 h-screen">
+    <div className=" bg-gray-50 min-h-screen">
       <div className="container  mx-auto px-4 py-16 space-y-6">
         <div className="space-y-2 mb-20">
           <h1 className="text-4xl font-semibold text-[#333333] primary-font mb-8">Hello Sergio,</h1>
