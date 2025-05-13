@@ -1,0 +1,16 @@
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+@font-face {
+  font-family: 'Duco Headline 16';
+  src: url('@/assets/fonts/duco-headline/Co Headline Bold.woff') format('woff');
+}
+
+.primary-font {
+  font-family: 'Duco Headline 16', sans-serif;
+}
+
+.primary-bg{
+  background-color: #00205B;
+}
