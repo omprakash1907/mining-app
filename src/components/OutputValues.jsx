@@ -14,12 +14,35 @@ import { Slider } from "@/components/ui/slider";
 
 export default function OutputValues() {
   const [selectedPlan, setSelectedPlan] = useState("Plan 250 - 250 TH/s");
-  const [planCount, setPlanCount] = useState(11);
-  const [months, setMonths] = useState(9);
+  const [planCount, setPlanCount] = useState(1);
+  const [months, setMonths] = useState(1);
   const [btcPrice, setBtcPrice] = useState(40583.2);
-  const [investment, setInvestment] = useState(20019.87);
-  const [estimatedIncome, setEstimatedIncome] = useState(21102.11);
-  const [roi, setRoi] = useState(104.51);
+  const [investment, setInvestment] = useState(0);
+  const [estimatedIncome, setEstimatedIncome] = useState(0);
+  const [roi, setRoi] = useState(0);
+  const [dailyIncome, setDailyIncome] = useState(0);
+
+  // Plan details
+  const plans = {
+    "Plan 250 - 250 TH/s": {
+      hashrate: 250, // TH/s
+      price: 1800, // USD per plan
+      dailyBtc: 0.00045, // BTC per day per plan
+      maintenanceFee: 0.05, // 5% maintenance fee
+    },
+    "Plan 500 - 500 TH/s": {
+      hashrate: 500,
+      price: 3500,
+      dailyBtc: 0.0009,
+      maintenanceFee: 0.045, // 4.5%
+    },
+    "Plan 1000 - 1000 TH/s": {
+      hashrate: 1000,
+      price: 6800,
+      dailyBtc: 0.0018,
+      maintenanceFee: 0.04, // 4%
+    },
+  };
 
   // Animation variants
   const container = {
@@ -44,12 +67,37 @@ export default function OutputValues() {
 
   // Calculate values when inputs change
   useEffect(() => {
-    setInvestment(20019.87);
-    setEstimatedIncome(21102.11);
-    setRoi(104.51);
-  }, [selectedPlan, planCount, months, btcPrice]);
+    const selectedPlanData = plans[selectedPlan];
+    if (!selectedPlanData) return;
 
-  const returnValue = 104.51;
+    // Calculate investment (price per plan * number of plans)
+    const totalInvestment = selectedPlanData.price * planCount;
+    setInvestment(totalInvestment);
+
+    // Calculate daily BTC income (BTC per day per plan * number of plans)
+    const dailyBtcIncome = selectedPlanData.dailyBtc * planCount;
+    setDailyIncome(dailyBtcIncome);
+
+    // Calculate estimated income (daily BTC * BTC price * days - maintenance fees)
+    const daysInMonth = 30; // Approximation
+    const totalDays = daysInMonth * months;
+    
+    // Gross income in BTC
+    const totalBtcIncome = dailyBtcIncome * totalDays;
+    
+    // Convert to USD
+    const grossIncomeUsd = totalBtcIncome * btcPrice;
+    
+    // Subtract maintenance fees (percentage of gross income)
+    const maintenanceFees = grossIncomeUsd * selectedPlanData.maintenanceFee;
+    const netIncomeUsd = grossIncomeUsd - maintenanceFees;
+    
+    setEstimatedIncome(netIncomeUsd);
+
+    // Calculate ROI (percentage)
+    const calculatedRoi = (netIncomeUsd / totalInvestment) * 100;
+    setRoi(calculatedRoi);
+  }, [selectedPlan, planCount, months, btcPrice]);
 
   return (
     <motion.div
@@ -86,19 +134,19 @@ export default function OutputValues() {
                     value="Plan 250 - 250 TH/s"
                     className="cursor-pointer"
                   >
-                    Plan 250 - 250 TH/s
+                    Plan 250 - 250 TH/s (${plans["Plan 250 - 250 TH/s"].price})
                   </SelectItem>
                   <SelectItem
                     value="Plan 500 - 500 TH/s"
                     className="cursor-pointer"
                   >
-                    Plan 500 - 500 TH/s
+                    Plan 500 - 500 TH/s (${plans["Plan 500 - 500 TH/s"].price})
                   </SelectItem>
                   <SelectItem
                     value="Plan 1000 - 1000 TH/s"
                     className="cursor-pointer"
                   >
-                    Plan 1000 - 1000 TH/s
+                    Plan 1000 - 1000 TH/s (${plans["Plan 1000 - 1000 TH/s"].price})
                   </SelectItem>
                 </SelectContent>
               </Select>
@@ -151,7 +199,7 @@ export default function OutputValues() {
                 <label className="text-sm font-medium">
                   BTC Price Forecast
                 </label>
-                <span className="text-sm text-gray-500">24th October 2024</span>
+                <span className="text-sm text-gray-500">Current Price</span>
               </div>
               <Input
                 type="number"
@@ -167,8 +215,14 @@ export default function OutputValues() {
               whileHover={{ scale: 1.02 }}
               className="bg-gray-100 p-3 rounded"
             >
-              <div className="text-xs text-gray-500">PRICE OF HASHRATE</div>
-              <div className="text-sm font-medium">0.049,683 USD/TH/Day</div>
+              <div className="text-xs text-gray-500">DAILY BTC INCOME</div>
+              <div className="text-sm font-medium">
+                {dailyIncome.toFixed(6)} BTC ($
+                {(dailyIncome * btcPrice).toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })})
+              </div>
             </motion.div>
           </motion.div>
 
@@ -179,7 +233,7 @@ export default function OutputValues() {
             <Card className="p-6 border rounded-md flex flex-col">
               <div>
                 <div className="text-sm font-bold text-gray-500">
-                  HASHRATE FEE
+                  TOTAL INVESTMENT
                 </div>
                 <motion.div
                   key={investment}
@@ -228,13 +282,13 @@ export default function OutputValues() {
                       MINING RETURN
                     </div>
                     <motion.div
-                      key={returnValue}
+                      key={roi}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3 }}
                       className="text-2xl font-bold text-[#333333] primary-font"
                     >
-                      {returnValue.toFixed(2)}%
+                      {roi.toFixed(2)}%
                     </motion.div>
                   </div>
                 </motion.div>
