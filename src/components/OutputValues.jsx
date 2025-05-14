@@ -81,17 +81,17 @@ export default function OutputValues() {
     // Calculate estimated income (daily BTC * BTC price * days - maintenance fees)
     const daysInMonth = 30; // Approximation
     const totalDays = daysInMonth * months;
-    
+
     // Gross income in BTC
     const totalBtcIncome = dailyBtcIncome * totalDays;
-    
+
     // Convert to USD
     const grossIncomeUsd = totalBtcIncome * btcPrice;
-    
+
     // Subtract maintenance fees (percentage of gross income)
     const maintenanceFees = grossIncomeUsd * selectedPlanData.maintenanceFee;
     const netIncomeUsd = grossIncomeUsd - maintenanceFees;
-    
+
     setEstimatedIncome(netIncomeUsd);
 
     // Calculate ROI (percentage)
@@ -146,7 +146,8 @@ export default function OutputValues() {
                     value="Plan 1000 - 1000 TH/s"
                     className="cursor-pointer"
                   >
-                    Plan 1000 - 1000 TH/s (${plans["Plan 1000 - 1000 TH/s"].price})
+                    Plan 1000 - 1000 TH/s ($
+                    {plans["Plan 1000 - 1000 TH/s"].price})
                   </SelectItem>
                 </SelectContent>
               </Select>
@@ -221,7 +222,8 @@ export default function OutputValues() {
                 {(dailyIncome * btcPrice).toLocaleString("en-US", {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
-                })})
+                })}
+                )
               </div>
             </motion.div>
           </motion.div>
@@ -249,50 +251,50 @@ export default function OutputValues() {
                   })}
                 </motion.div>
               </div>
-              <div className="flex justify-center items-center w-full">
-                <motion.div className="relative w-64 h-64">
-                  {/* Outermost ring - light blue (10px) */}
-                  <div className="absolute inset-0 rounded-full border-[15px] border-[#58caef]"></div>
-
-                  {/* Middle ring - white (20px) - offset by 10px to show light blue outer */}
-                  <div
-                    className="absolute rounded-full border-[15px] border-white"
-                    style={{
-                      top: "20px",
-                      left: "20px",
-                      right: "20px",
-                      bottom: "20px",
-                    }}
-                  ></div>
-
-                  {/* Innermost ring - dark blue (30px) - offset by 30px to show white middle */}
-                  <div
-                    className="absolute rounded-full border-[15px] border-[#2F4F7F]"
-                    style={{
-                      top: "30px",
-                      left: "30px",
-                      right: "30px",
-                      bottom: "30px",
-                    }}
-                  ></div>
-
-                  {/* Text display */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <div className="text-xs text-gray-600 font-semibold">
-                      MINING RETURN
-                    </div>
-                    <motion.div
-                      key={roi}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-2xl font-bold text-[#333333] primary-font"
-                    >
-                      {roi.toFixed(2)}%
-                    </motion.div>
-                  </div>
-                </motion.div>
-              </div>
+          <div className="flex justify-center items-center w-full">
+  <motion.div className="relative w-64 h-64">
+    {/* Outer ring - Estimated Income (light blue) */}
+    <div 
+      className="absolute rounded-full border-[15px] border-[#58caef]"
+      style={{
+        top: `${15 - (estimatedIncome / investment) * 7.5}px`,
+        left: `${15 - (estimatedIncome / investment) * 7.5}px`,
+        right: `${15 - (estimatedIncome / investment) * 7.5}px`,
+        bottom: `${15 - (estimatedIncome / investment) * 7.5}px`,
+        borderWidth: `${(estimatedIncome / investment) * 15}px`,
+        transition: 'all 0.5s ease'
+      }}
+    ></div>
+    
+    {/* Inner ring - Investment (dark blue) */}
+    <div 
+      className="absolute rounded-full border-[15px] border-[#2F4F7F]"
+      style={{
+        top: "30px",
+        left: "30px",
+        right: "30px",
+        bottom: "30px",
+        transition: 'all 0.5s ease'
+      }}
+    ></div>
+    
+    {/* Center text */}
+    <div className="absolute inset-0 flex flex-col items-center justify-center">
+      <div className="text-xs text-gray-600 font-semibold">
+        MINING RETURN
+      </div>
+      <motion.div
+        key={roi}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3 }}
+        className="text-2xl font-bold text-[#333333] primary-font"
+      >
+        {roi.toFixed(2)}%
+      </motion.div>
+    </div>
+  </motion.div>
+</div>
               <div className="grid grid-cols-2 w-full gap-4">
                 <motion.div
                   whileHover={{ scale: 1.03 }}
