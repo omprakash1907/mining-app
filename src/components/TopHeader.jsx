@@ -9,7 +9,7 @@ import {
 
 export default function TopHeader() {
   return (
-    <div className="bg-[#00205B] text-white text-sm relative z-10">
+    <div className="primary-bg text-white text-sm relative z-10">
       <div className="container mx-auto px-4 flex justify-between items-center h-[52px]">
         {/* Left - Main Account Dropdown */}
         <div className="flex items-center">
@@ -24,7 +24,7 @@ export default function TopHeader() {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="start"
-              className="bg-[#004502] border border-white/20 text-white"
+              className="primary-bg border border-white/20 text-white"
             >
               <DropdownMenuItem className="text-white hover:bg-white/10 hover:text-white focus:bg-white/10 hover:cursor-pointer">
                 Account Settings
