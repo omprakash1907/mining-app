@@ -6,6 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Link } from "react-router-dom";
 
 export default function TopHeader() {
   return (
@@ -41,18 +42,21 @@ export default function TopHeader() {
 
         {/* Center - Quick Links with animated underline */}
         <div className="hidden md:flex items-center space-x-6">
-          {["Quick link 1", "Quick link 2", "Quick link 3", "Quick link 4"].map(
-            (link, idx) => (
-              <div key={idx} className="relative group">
-                <button
-                  variant="ghost"
-                  className="text-white text-sm hover:bg-transparent hover:underline hover:cursor-pointer px-0 py-1 transition-colors"
-                >
-                  {link}
-                </button>
-              </div>
-            )
-          )}
+          {[
+            { label: "Start Mining", path: "/start-mining" },
+            { label: "Mining Contract", path: "/mining-contract" },
+            { label: "Bitcoin Wallet", path: "/bitcoin-wallet" },
+            { label: "Support", path: "/support" },
+          ].map((link, idx) => (
+            <div key={idx} className="relative group">
+              <Link
+                to={link.path}
+                className="text-white text-sm hover:bg-transparent hover:underline hover:cursor-pointer px-0 py-1 transition-colors"
+              >
+                {link.label}
+              </Link>
+            </div>
+          ))}
         </div>
 
         {/* Right - Accessibility */}
