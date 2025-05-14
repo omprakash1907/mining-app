@@ -52,7 +52,7 @@ export default function OutputValues() {
   const returnValue = 104.51;
 
   return (
-    <motion.div 
+    <motion.div
       initial="hidden"
       animate="show"
       variants={container}
@@ -64,7 +64,7 @@ export default function OutputValues() {
           See your potential.
         </h1>
       </motion.div>
-      
+
       <div className="bg-white">
         <div className="grid md:grid-cols-2 items-center gap-8 py-4">
           <motion.div variants={item} className="space-y-6 p-8">
@@ -117,7 +117,7 @@ export default function OutputValues() {
                 onValueChange={(value) => setPlanCount(value[0])}
                 className="py-4"
               />
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="inline-block bg-slate-800 text-white text-xs font-medium px-3 py-1"
               >
@@ -138,7 +138,7 @@ export default function OutputValues() {
                 onValueChange={(value) => setMonths(value[0])}
                 className="py-4"
               />
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="inline-block bg-slate-800 text-white text-xs font-medium px-3 py-1"
               >
@@ -162,7 +162,7 @@ export default function OutputValues() {
               />
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={item}
               whileHover={{ scale: 1.02 }}
               className="bg-gray-100 p-3 rounded"
@@ -172,13 +172,16 @@ export default function OutputValues() {
             </motion.div>
           </motion.div>
 
-          <motion.div variants={cardItem} className="flex flex-col justify-between">
+          <motion.div
+            variants={cardItem}
+            className="flex flex-col justify-between"
+          >
             <Card className="p-6 border rounded-md flex flex-col">
               <div>
                 <div className="text-sm font-bold text-gray-500">
                   HASHRATE FEE
                 </div>
-                <motion.div 
+                <motion.div
                   key={investment}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -193,15 +196,7 @@ export default function OutputValues() {
                 </motion.div>
               </div>
               <div className="flex justify-center items-center w-full">
-                <motion.div 
-                  animate={{ rotate: 360 }}
-                  transition={{ 
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className="relative w-64 h-64"
-                >
+                <motion.div className="relative w-64 h-64">
                   {/* Outermost ring - light blue (10px) */}
                   <div className="absolute inset-0 rounded-full border-[15px] border-[#58caef]"></div>
 
@@ -232,7 +227,7 @@ export default function OutputValues() {
                     <div className="text-xs text-gray-600 font-semibold">
                       MINING RETURN
                     </div>
-                    <motion.div 
+                    <motion.div
                       key={returnValue}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -245,12 +240,14 @@ export default function OutputValues() {
                 </motion.div>
               </div>
               <div className="grid grid-cols-2 w-full gap-4">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.03 }}
                   className="text-center"
                 >
-                  <div className="text-base text-[#00205B] primary-font font-semibold">Investments</div>
-                  <motion.div 
+                  <div className="text-base text-[#00205B] primary-font font-semibold">
+                    Investments
+                  </div>
+                  <motion.div
                     key={investment}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -264,12 +261,14 @@ export default function OutputValues() {
                     })}
                   </motion.div>
                 </motion.div>
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.03 }}
                   className="text-center"
                 >
-                  <div className="text-base  text-[#58caef] primary-font font-semibold">Estimated Income</div>
-                  <motion.div 
+                  <div className="text-base  text-[#58caef] primary-font font-semibold">
+                    Estimated Income
+                  </div>
+                  <motion.div
                     key={estimatedIncome}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
