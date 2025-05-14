@@ -21,25 +21,25 @@ export default function OutputValues() {
   const [estimatedIncome, setEstimatedIncome] = useState(0);
   const [roi, setRoi] = useState(0);
   const [dailyIncome, setDailyIncome] = useState(0);
+  const [totalHashrate, setTotalHashrate] = useState(0);
+  const [estimatedBtcMined, setEstimatedBtcMined] = useState(0);
+  const [hashratePrice, setHashratePrice] = useState(0.049683); // USD/TH/day
 
   // Plan details
   const plans = {
     "Plan 250 - 250 TH/s": {
       hashrate: 250, // TH/s
-      price: 1800, // USD per plan
-      dailyBtc: 0.00045, // BTC per day per plan
+      hashratePrice: 0.049683, // USD/TH/day
       maintenanceFee: 0.05, // 5% maintenance fee
     },
     "Plan 500 - 500 TH/s": {
       hashrate: 500,
-      price: 3500,
-      dailyBtc: 0.0009,
+      hashratePrice: 0.049683,
       maintenanceFee: 0.045, // 4.5%
     },
     "Plan 1000 - 1000 TH/s": {
       hashrate: 1000,
-      price: 6800,
-      dailyBtc: 0.0018,
+      hashratePrice: 0.049683,
       maintenanceFee: 0.04, // 4%
     },
   };
@@ -70,32 +70,37 @@ export default function OutputValues() {
     const selectedPlanData = plans[selectedPlan];
     if (!selectedPlanData) return;
 
-    // Calculate investment (price per plan * number of plans)
-    const totalInvestment = selectedPlanData.price * planCount;
+    // Calculate total hashrate
+    const hashrate = selectedPlanData.hashrate * planCount;
+    setTotalHashrate(hashrate);
+
+    // Calculate total days
+    const totalDays = months * 30;
+
+    // Calculate investment (hashrate * days * hashrate price)
+    const totalInvestment = hashrate * totalDays * selectedPlanData.hashratePrice;
     setInvestment(totalInvestment);
 
-    // Calculate daily BTC income (BTC per day per plan * number of plans)
-    const dailyBtcIncome = selectedPlanData.dailyBtc * planCount;
-    setDailyIncome(dailyBtcIncome);
+    // Calculate estimated BTC mined (using the yield from your example)
+    const miningYield = 0.000002104; // BTC/TH/day (from your calculation)
+    const btcMined = hashrate * totalDays * miningYield;
+    setEstimatedBtcMined(btcMined);
 
-    // Calculate estimated income (daily BTC * BTC price * days - maintenance fees)
-    const daysInMonth = 30; // Approximation
-    const totalDays = daysInMonth * months;
-
-    // Gross income in BTC
-    const totalBtcIncome = dailyBtcIncome * totalDays;
-
-    // Convert to USD
-    const grossIncomeUsd = totalBtcIncome * btcPrice;
+    // Calculate estimated income (BTC mined * BTC price)
+    const grossIncome = btcMined * btcPrice;
 
     // Subtract maintenance fees (percentage of gross income)
-    const maintenanceFees = grossIncomeUsd * selectedPlanData.maintenanceFee;
-    const netIncomeUsd = grossIncomeUsd - maintenanceFees;
+    const maintenanceFees = grossIncome * selectedPlanData.maintenanceFee;
+    const netIncome = grossIncome - maintenanceFees;
 
-    setEstimatedIncome(netIncomeUsd);
+    setEstimatedIncome(netIncome);
+
+    // Calculate daily BTC income
+    const dailyBtc = hashrate * miningYield;
+    setDailyIncome(dailyBtc);
 
     // Calculate ROI (percentage)
-    const calculatedRoi = (netIncomeUsd / totalInvestment) * 100;
+    const calculatedRoi = (netIncome / totalInvestment) * 100;
     setRoi(calculatedRoi);
   }, [selectedPlan, planCount, months, btcPrice]);
 
@@ -134,20 +139,19 @@ export default function OutputValues() {
                     value="Plan 250 - 250 TH/s"
                     className="cursor-pointer"
                   >
-                    Plan 250 - 250 TH/s (${plans["Plan 250 - 250 TH/s"].price})
+                    Plan 250 - 250 TH/s
                   </SelectItem>
                   <SelectItem
                     value="Plan 500 - 500 TH/s"
                     className="cursor-pointer"
                   >
-                    Plan 500 - 500 TH/s (${plans["Plan 500 - 500 TH/s"].price})
+                    Plan 500 - 500 TH/s
                   </SelectItem>
                   <SelectItem
                     value="Plan 1000 - 1000 TH/s"
                     className="cursor-pointer"
                   >
-                    Plan 1000 - 1000 TH/s ($
-                    {plans["Plan 1000 - 1000 TH/s"].price})
+                    Plan 1000 - 1000 TH/s
                   </SelectItem>
                 </SelectContent>
               </Select>
@@ -211,6 +215,21 @@ export default function OutputValues() {
               />
             </motion.div>
 
+            <motion.div variants={item} className="space-y-2">
+              <div className="flex justify-between">
+                <label className="text-sm font-medium">
+                  Hashrate Price (USD/TH/day)
+                </label>
+              </div>
+              <Input
+                type="number"
+                value={hashratePrice}
+                onChange={(e) => setHashratePrice(Number.parseFloat(e.target.value))}
+                className="w-full"
+                prefix="$"
+              />
+            </motion.div>
+
             <motion.div
               variants={item}
               whileHover={{ scale: 1.02 }}
@@ -251,50 +270,50 @@ export default function OutputValues() {
                   })}
                 </motion.div>
               </div>
-          <div className="flex justify-center items-center w-full">
-  <motion.div className="relative w-64 h-64">
-    {/* Outer ring - Estimated Income (light blue) */}
-    <div 
-      className="absolute rounded-full border-[15px] border-[#58caef]"
-      style={{
-        top: `${15 - (estimatedIncome / investment) * 7.5}px`,
-        left: `${15 - (estimatedIncome / investment) * 7.5}px`,
-        right: `${15 - (estimatedIncome / investment) * 7.5}px`,
-        bottom: `${15 - (estimatedIncome / investment) * 7.5}px`,
-        borderWidth: `${(estimatedIncome / investment) * 15}px`,
-        transition: 'all 0.5s ease'
-      }}
-    ></div>
-    
-    {/* Inner ring - Investment (dark blue) */}
-    <div 
-      className="absolute rounded-full border-[15px] border-[#2F4F7F]"
-      style={{
-        top: "30px",
-        left: "30px",
-        right: "30px",
-        bottom: "30px",
-        transition: 'all 0.5s ease'
-      }}
-    ></div>
-    
-    {/* Center text */}
-    <div className="absolute inset-0 flex flex-col items-center justify-center">
-      <div className="text-xs text-gray-600 font-semibold">
-        MINING RETURN
-      </div>
-      <motion.div
-        key={roi}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.3 }}
-        className="text-2xl font-bold text-[#333333] primary-font"
-      >
-        {roi.toFixed(2)}%
-      </motion.div>
-    </div>
-  </motion.div>
-</div>
+              <div className="flex justify-center items-center w-full">
+                <motion.div className="relative w-64 h-64">
+                  {/* Outer ring - Estimated Income (light blue) */}
+                  <div
+                    className="absolute rounded-full border-[15px] border-[#58caef]"
+                    style={{
+                      top: `${15 - (estimatedIncome / investment) * 7.5}px`,
+                      left: `${15 - (estimatedIncome / investment) * 7.5}px`,
+                      right: `${15 - (estimatedIncome / investment) * 7.5}px`,
+                      bottom: `${15 - (estimatedIncome / investment) * 7.5}px`,
+                      borderWidth: `${(estimatedIncome / investment) * 15}px`,
+                      transition: "all 0.5s ease",
+                    }}
+                  ></div>
+
+                  {/* Inner ring - Investment (dark blue) */}
+                  <div
+                    className="absolute rounded-full border-[15px] border-[#2F4F7F]"
+                    style={{
+                      top: "30px",
+                      left: "30px",
+                      right: "30px",
+                      bottom: "30px",
+                      transition: "all 0.5s ease",
+                    }}
+                  ></div>
+
+                  {/* Center text */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <div className="text-xs text-gray-600 font-semibold">
+                      MINING RETURN
+                    </div>
+                    <motion.div
+                      key={roi}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-2xl font-bold text-[#333333] primary-font"
+                    >
+                      {roi.toFixed(2)}%
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </div>
               <div className="grid grid-cols-2 w-full gap-4">
                 <motion.div
                   whileHover={{ scale: 1.03 }}
@@ -338,7 +357,7 @@ export default function OutputValues() {
                     })}
                   </motion.div>
                 </motion.div>
-              </div>
+              </div>  
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
