@@ -45,7 +45,7 @@ export default function PricingSection() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl font-nomral mb-3 text-[#333333] actor-font">Choose Your Package</h2>
+          <h2 className="text-5xl font-nomral mb-6 text-[#333333] primary-font">Choose Your Package</h2>
           <p className="text-gray-600 mb-10 max-w-2xl">
             Most popular plans for small and medium businesses or you can select
             your own plan options below
