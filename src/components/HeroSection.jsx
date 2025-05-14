@@ -13,6 +13,7 @@ import heroimage from "@/assets/image/bg-vector.png";
 import herobg1 from "@/assets/image/hero-bg-1.png";
 import herobg2 from "@/assets/image/hero-bg-2.png";
 import herobg3 from "@/assets/image/hero-bg-3.png";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   const container = {
@@ -62,16 +63,22 @@ export default function HeroSection() {
               <h1 className="text-5xl md:text-7xl font-bold primary-font">
                 <span className="bg-gradient-to-r from-[#00205B] via-[#753BBD] to-[#00A9CE] bg-clip-text text-transparent">
                   Bitcoin mining as a
-                </span>{' '}
-                <span className="bg-gradient-to-tr from-[#00205B] to-[#753BBD] bg-clip-text text-transparent">service</span>
-                <span className="bg-gradient-to-r from-[#000000] via-[#1A1A1A] to-[#333333] bg-clip-text text-transparent"> for everyone.</span>
+                </span>{" "}
+                <span className="bg-gradient-to-tr from-[#00205B] to-[#753BBD] bg-clip-text text-transparent">
+                  service
+                </span>
+                <span className="bg-gradient-to-r from-[#000000] via-[#1A1A1A] to-[#333333] bg-clip-text text-transparent">
+                  {" "}
+                  for everyone.
+                </span>
               </h1>
 
-
               <div className="flex gap-4 items-center justify-end mt-12 md:w-2/3 ">
-                <Button className="primary-bg text-white px-10 py-6 font-medium text-lg hover:cursor-pointer flex grow">
-                  Start mining Bitcoin now
-                </Button>
+                <Link to={'/start-mining'}>
+                  <Button className="primary-bg text-white px-10 py-6 font-medium text-lg hover:cursor-pointer flex grow">
+                    Start mining Bitcoin now
+                  </Button>
+                </Link>
                 <div className="ml-4">
                   <a
                     href="#"
@@ -114,8 +121,8 @@ export default function HeroSection() {
                 className="h-full text-white border-none shadow-lg rounded-xl overflow-hidden hover:transform hover:scale-[1.01] transition-all cursor-pointer"
                 style={{
                   backgroundImage: `url(${herobg1})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
               >
                 <CardHeader>
@@ -125,7 +132,8 @@ export default function HeroSection() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-md text-gray-200 text-base w-1/2">
-                    Extensive options for data and minutes with fixed monthly payments.
+                    Extensive options for data and minutes with fixed monthly
+                    payments.
                   </p>
                 </CardContent>
                 <CardFooter>
@@ -151,7 +159,6 @@ export default function HeroSection() {
                   </div>
                 </CardFooter>
               </Card>
-
             </motion.div>
 
             {/* Why Us? Card */}
@@ -180,8 +187,8 @@ export default function HeroSection() {
                 className="h-full text-white border-none shadow-lg rounded-xl overflow-hidden hover:transform hover:scale-[1.01] transition-all cursor-pointer p-6 flex flex-col justify-between"
                 style={{
                   backgroundImage: `url(${herobg3})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
               >
                 <div>
@@ -212,7 +219,6 @@ export default function HeroSection() {
                   </button>
                 </CardFooter>
               </Card>
-
             </motion.div>
           </motion.div>
         </div>
